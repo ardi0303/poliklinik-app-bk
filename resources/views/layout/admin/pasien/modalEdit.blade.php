@@ -54,12 +54,12 @@
                         </div>
                         <div class="flex flex-col gap-2">
                             <label for="no_ktp" class="text-sm font-bold">No KTP</label>
-                            <input type="text" name="no_ktp" id="no_ktp"
+                            <input type="number" name="no_ktp" id="no_ktp"
                                 class="p-2 border border-black rounded-md" value="{{ $pasien->no_ktp }}">
                         </div>
                         <div class="flex flex-col gap-2">
                             <label for="no_hp" class="text-sm font-bold">No HP</label>
-                            <input type="text" name="no_hp" id="no_hp"
+                            <input type="number" name="no_hp" id="no_hp"
                                 class="p-2 border border-black rounded-md" value="{{ $pasien->no_hp }}">
                         </div>
                         <div class="flex flex-col gap-2">

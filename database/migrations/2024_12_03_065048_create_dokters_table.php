@@ -15,7 +15,7 @@ return new class extends Migration
       $table->id();
       $table->string('nama');
       $table->string('alamat');
-      $table->string('no_hp', 50);
+      $table->integer('no_hp');
       $table->unsignedBigInteger('id_poli');
       $table->foreign('id_poli')->references('id')->on('polis')->constraint();
       $table->timestamps();

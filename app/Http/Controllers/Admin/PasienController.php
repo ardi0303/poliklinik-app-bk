@@ -13,9 +13,9 @@ class PasienController extends Controller
   {
     $pasiens = Pasien::all();
 
-    $lastPasien = Pasien::latest()->first();
-    $newId = $lastPasien ? $lastPasien->id + 1 : 1;
-    $no_rm = date('ym') . '-' . $newId;
+    $lastPasien = Pasien::latest();
+    $newId = $lastPasien ? $lastPasien->count() + 1 : 1;
+    $no_rm = date('Y') . '-' . sprintf('%03d', $newId);
 
     return view('admin.pasien', compact('pasiens', 'no_rm'));
   }
@@ -25,8 +25,8 @@ class PasienController extends Controller
     $request->validate([
       'nama' => 'required|unique:pasiens',
       'alamat' => 'required',
-      'no_ktp' => 'required',
-      'no_hp' => 'required',
+      'no_ktp' => 'required|integer',
+      'no_hp' => 'required|integer',
       'no_rm' => 'required',
     ]);
 
@@ -49,8 +49,8 @@ class PasienController extends Controller
     $request->validate([
       'nama' => 'required|unique:pasiens,nama,' . $id,
       'alamat' => 'required',
-      'no_ktp' => 'required',
-      'no_hp' => 'required',
+      'no_ktp' => 'required|integer',
+      'no_hp' => 'required|integer',
       'no_rm' => 'required',
     ]);
     try {

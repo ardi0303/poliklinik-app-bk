@@ -25,7 +25,7 @@ class DokterController extends Controller
     $request->validate([
       'nama' => 'required|unique:dokters',
       'alamat' => 'required',
-      'no_hp' => 'required',
+      'no_hp' => 'required|integer',
       'id_poli' => 'required|exists:polis,id',
     ]);
     try {
@@ -41,7 +41,7 @@ class DokterController extends Controller
     $request->validate([
       'nama' => 'required|unique:dokters,nama,' . $id,
       'alamat' => 'required',
-      'no_hp' => 'required',
+      'no_hp' => 'required|integer',
       'id_poli' => 'required|exists:polis,id',
     ]);
     try {

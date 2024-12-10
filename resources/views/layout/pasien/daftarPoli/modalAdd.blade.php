@@ -98,7 +98,7 @@
                         jadwalSelect.innerHTML = '<option value="">Pilih Jadwal</option>';
                         data.forEach(jadwal => {
                             jadwalSelect.innerHTML +=
-                                `<option value="${jadwal.id}">${jadwal.dokter.nama} ${jadwal.hari} - ${jadwal.jam_mulai} s/d ${jadwal.jam_selesai}</option>`;
+                                `<option value="${jadwal.id}">${jadwal.dokter.nama} | ${jadwal.hari} - ${jadwal.jam_mulai} s/d ${jadwal.jam_selesai}</option>`;
                         });
                         jadwalSelect.disabled = false;
                     })

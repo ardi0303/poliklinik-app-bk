@@ -22,7 +22,7 @@ class DaftarPoliController extends Controller
       ->where('id_pasien', $id_pasien)
       ->get();
 
-    return view('pasien.daftarPoli', compact('daftarPolis', 'polis', 'jadwalPeriksas', 'no_rm'));
+    return view('pasien.daftarPoli', compact('daftarPolis', 'polis', 'no_rm'));
   }
   public function getJadwalByPoli($id_poli)
   {

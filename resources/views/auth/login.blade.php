@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite('resources/css/app.css')
+    <title>Login</title>
 </head>
 
 <body class="font-jakarta-sans">
@@ -23,12 +24,12 @@
                         @csrf
                         <div class="flex flex-col gap-6">
                             <div class="flex flex-col gap-2">
-                                <label for="nama" class="text-sm font-bold">Username</label>
+                                <label for="nama" class="text-sm font-bold">Nama Lengkap</label>
                                 <input type="text" name="nama" id="nama"
                                     class="p-2 border border-black rounded-md">
                             </div>
                             <div class="flex flex-col gap-2">
-                                <label for="alamat" class="text-sm font-bold">Password</label>
+                                <label for="alamat" class="text-sm font-bold">Alamat</label>
                                 <input type="text" name="alamat" id="alamat"
                                     class="p-2 border border-black rounded-md">
                             </div>
@@ -57,7 +58,7 @@
                             </div> --}}
                         </div>
                         <div class="flex flex-col gap-2">
-                            <button type="submit" class="p-2 bg-gray-500 text-white rounded-md">Daftar</button>
+                            <button type="submit" class="p-2 bg-gray-500 text-white rounded-md">Login</button>
                         </div>
                     </form>
                 </div>

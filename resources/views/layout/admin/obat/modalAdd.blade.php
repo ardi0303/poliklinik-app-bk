@@ -55,7 +55,7 @@
                         </div>
                         <div class="flex flex-col gap-2">
                             <label for="harga" class="text-sm font-bold">Harga</label>
-                            <input type="text" name="harga" id="harga"
+                            <input type="number" name="harga" id="harga"
                                 class="p-2 border border-black rounded-md">
                         </div>
                         <!-- Modal footer -->

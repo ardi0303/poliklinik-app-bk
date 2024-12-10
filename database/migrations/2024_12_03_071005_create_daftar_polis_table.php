@@ -18,7 +18,7 @@ return new class extends Migration
       $table->unsignedBigInteger('id_jadwal');
       $table->foreign('id_jadwal')->references('id')->on('jadwal_periksas')->constraint();
       $table->text('keluhan');
-      $table->unsignedBigInteger('no_antrian')->nullable();
+      $table->integer('no_antrian')->nullable();
       $table->timestamps();
     });
   }
