@@ -10,14 +10,14 @@
 
 <body>
     <!-- Modal toggle -->
-    <button data-modal-target="add-periksa-modal" data-modal-toggle="add-periksa-modal"
-        class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        type="button">
-        Periksa
+    <button data-modal-target="edit-profil-modal-{{ $dokter->id }}"
+        data-modal-toggle="edit-profil-modal-{{ $dokter->id }}" type="button"
+        class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Edit Profil
     </button>
 
     <!-- Main modal -->
-    <div id="add-periksa-modal" tabindex="-1" aria-hidden="true"
+    <div id="edit-profil-modal-{{ $dokter->id }}" tabindex="-1" aria-hidden="true"
         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative p-4 w-full max-w-2xl max-h-full">
             <!-- Modal content -->
@@ -25,11 +25,11 @@
                 <!-- Modal header -->
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        Memeriksa Pasien
+                        Edit Profil
                     </h3>
                     <button type="button"
                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-modal-hide="add-periksa-modal">
+                        data-modal-hide="edit-profil-modal-{{ $dokter->id }}">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -39,50 +39,42 @@
                     </button>
                 </div>
                 <!-- Modal body -->
-
-                <form class="p-4 md:p-5" action="{{ route('dokter.periksa.store') }}" method="POST">
+                <form class="p-4 md:p-5" action="{{ route('dokter.profil.update', $dokter->id) }}" method="POST">
+                    @method('PUT')
                     @csrf
                     <div class="space-y-4">
-                        <input type="hidden" name="id_daftar_poli" value="{{ $daftarPoli->id }}">
                         <div class="flex flex-col gap-2">
-                            <label for="nama" class="text-sm font-bold">Nama Pasien</label>
+                            <label for="nama" class="text-sm font-bold">Nama</label>
                             <input type="text" name="nama" id="nama"
-                                class="p-2 border border-black rounded-md bg-gray-200" readonly
-                                value={{ $daftarPoli->pasien->nama }}>
+                                class="p-2 border border-black rounded-md" value="{{ $dokter->nama }}">
                         </div>
                         <div class="flex flex-col gap-2">
-                            <label for="tgl_periksa" class="text-sm font-bold">Tanggal Periksa</label>
-                            <input type="date" name="tgl_periksa" id="tgl_periksa"
-                                class="p-2 border border-black rounded-md">
+                            <label for="alamat" class="text-sm font-bold">Alamat</label>
+                            <input type="text" name="alamat" id="alamat"
+                                class="p-2 border border-black rounded-md" value="{{ $dokter->alamat }}">
                         </div>
                         <div class="flex flex-col gap-2">
-                            <label for="catatan" class="text-sm font-bold">Catatan</label>
-                            <input type="text" name="catatan" id="catatan"
-                                class="p-2 border border-black rounded-md">
+                            <label for="no_hp" class="text-sm font-bold">No. HP</label>
+                            <input type="number" name="no_hp" id="no_hp"
+                                class="p-2 border border-black rounded-md" value="{{ $dokter->no_hp }}">
                         </div>
                         <div class="flex flex-col gap-2">
-                            <label for="obat" class="text-sm font-bold">Obat</label>
-                            <select class="p-2 border border-black rounded-md" id="obat" name="obat[]"
-                                multiple="multiple">
-                                @foreach ($obats as $obat)
-                                    <option value="{{ $obat->id }}" data-harga="{{ $obat->harga }}">
-                                        {{ $obat->nama_obat }} - Rp{{ number_format($obat->harga, 0, ',', '.') }}
+                            <label for="poli" class="text-sm font-bold">Poli</label>
+                            <select name="id_poli" id="id_poli" class="p-2 border border-black rounded-md">
+                                @foreach ($polis as $poli)
+                                    <option value="{{ $poli->id }}"
+                                        {{ $poli->id == $dokter->id_poli ? 'selected' : '' }}>
+                                        {{ $poli->nama_poli }}
                                     </option>
                                 @endforeach
                             </select>
                         </div>
-                        <div class="flex flex-col gap-2">
-                            <label for="biaya_periksa" class="text-sm font-bold">Biaya Periksa</label>
-                            <input type="text" name="biaya_periksa" id="biaya_periksa"
-                                class="p-2 border border-black rounded-md bg-gray-200" readonly>
-                        </div>
-
                         <!-- Modal footer -->
                         <div class="flex items-center border-t py-5 border-gray-200 rounded-b dark:border-gray-600">
-                            <button data-modal-hide="add-periksa-modal" type="submit"
+                            <button data-modal-hide="edit-profil-modal-{{ $dokter->id }}" type="submit"
                                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">I
                                 accept</button>
-                            <button data-modal-hide="add-periksa-modal" type="button"
+                            <button data-modal-hide="edit-profil-modal-{{ $dokter->id }}" type="button"
                                 class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Decline</button>
                         </div>
                     </div>
@@ -90,24 +82,6 @@
             </div>
         </div>
     </div>
-    <script>
-        $(document).ready(function() {
-            $('#obat').select2();
-
-            function calculateBiayaPeriksa() {
-                let totalPrice = 0;
-                $('#obat option:selected').each(function() {
-                    totalPrice += parseFloat($(this).data('harga')) || 0;
-                });
-                totalPrice += 150000;
-                $('#biaya_periksa').val(totalPrice);
-            }
-            $('#obat').on('change', function() {
-                calculateBiayaPeriksa();
-            });
-            calculateBiayaPeriksa();
-        });
-    </script>
 </body>
 
 </html>

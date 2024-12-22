@@ -64,9 +64,7 @@ class AuthController extends Controller
     try {
       $lastPasien = Pasien::latest()->first();
       $newId = $lastPasien ? $lastPasien->id + 1 : 1;
-
-      // no_rm adalah tahun bulan, no urut ex 202411-01
-      $request['no_rm'] = date('ym') . '-' . $newId;
+      $request['no_rm'] = date('Ym') . '-' . sprintf('%03d', $newId);
       $pasien = Pasien::create($request->all());
       auth()->guard('pasien')->login($pasien);
       return redirect()->route('pasien.dashboard')->with('success', 'Registered successfully.');

@@ -7,6 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <title>Document</title>
 </head>
 
@@ -58,68 +62,56 @@
             @include('layout.sidebar')
         </div>
         <div class="container py-5">
-            @include('layout.pasien.daftarPoli.modalAdd')
             <div class="relative overflow-x-auto shadow-md rounded-lg border border-black mt-5">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
-                                Poli
+                                Nama Pasien
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Dokter
+                                Alamat
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Hari
+                                No. KTP
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Mulai
+                                No. HP
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Selesai
+                                No. RM
                             </th>
-                            <th scope="col" class="px-6 py-3">
-                                Antrian
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Status
-                            </th>
+
                             <th scope="col" class="px-6 py-3 text-end">
                                 Action
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($daftarPolis as $daftarPoli)
+                        @foreach ($periksas as $periksa)
                             <tr
                                 class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                 <th scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ $daftarPoli->jadwalPeriksa->dokter->poli->nama_poli }}
+                                    {{ $periksa->daftarPoli->pasien->nama }}
                                 </th>
                                 <td class="px-6 py-4">
-                                    {{ $daftarPoli->jadwalPeriksa->dokter->nama }}
+                                    {{ $periksa->daftarPoli->pasien->alamat }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $daftarPoli->jadwalPeriksa->hari }}
+                                    {{ $periksa->daftarPoli->pasien->no_ktp }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $daftarPoli->jadwalPeriksa->jam_mulai }}
-                                </td>
-                                </th>
-                                <td class="px-6 py-4">
-                                    {{ $daftarPoli->jadwalPeriksa->jam_selesai }}
+                                    {{ $periksa->daftarPoli->pasien->no_hp }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $daftarPoli->no_antrian }}
+                                    {{ $periksa->daftarPoli->pasien->no_rm }}
                                 </td>
-                                <td class="px-6 py-4">
-                                    {{ $daftarPoli->status_periksa }}
-                                </td>
+                                {{-- <td class="px-6 py-4">
+                                    {{ $daftarPoli->keluhan }}
+                                </td> --}}
                                 <td class="px-6 py-4 flex gap-2 justify-end">
-                                    @if ($daftarPoli->status_periksa === 'Sudah Diperiksa')
-                                        @include('layout.pasien.daftarPoli.modalDetail')
-                                    @endif
+                                    @include('layout.dokter.riwayat.modalDetail')
                                 </td>
                             </tr>
                         @endforeach

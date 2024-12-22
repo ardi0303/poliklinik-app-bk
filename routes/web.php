@@ -6,8 +6,10 @@ use App\Http\Controllers\Admin\DokterController;
 use App\Http\Controllers\Admin\ObatController;
 use App\Http\Controllers\Admin\PasienController;
 use App\Http\Controllers\Admin\PoliController;
+use App\Http\Controllers\Dokter\DetailPeriksaController;
 use App\Http\Controllers\Dokter\JadwalPeriksaController;
 use App\Http\Controllers\Dokter\PeriksaController;
+use App\Http\Controllers\Dokter\ProfilController;
 use App\Http\Controllers\Pasien\DaftarPoliController;
 use App\Models\Obat;
 use Illuminate\Support\Facades\Route;
@@ -62,10 +64,20 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 Route::group(['prefix' => 'dokter', 'as' => 'dokter.'], function () {
   Route::group(['middleware' => 'auth:dokter'], function () {
     Route::get('/dashboard', [DokterController::class, 'dashboard'])->name('dashboard');
+
     Route::get('/jadwal-periksa', [JadwalPeriksaController::class, 'getJadwalPeriksa'])->name('jadwal-periksa');
+    Route::post('/jadwal-periksa', [JadwalPeriksaController::class, 'addJadwalPeriksa'])->name('jadwal-periksa.store');
+    Route::put('/jadwal-periksa/{id}', [JadwalPeriksaController::class, 'updateJadwalPeriksa'])->name('jadwal-periksa.update');
+    Route::delete('/jadwal-periksa/{id}', [JadwalPeriksaController::class, 'deleteJadwalPeriksa'])->name('jadwal-periksa.delete');
+
     Route::get('/periksa', [PeriksaController::class, 'getDaftarPoli'])->name('periksa');
     Route::post('/periksa', [PeriksaController::class, 'addPeriksa'])->name('periksa.store');
     Route::put('/periksa/{id}', [PeriksaController::class, 'updatePeriksa'])->name('periksa.update');
+
+    Route::get('/riwayat-periksa', [DetailPeriksaController::class, 'getRiwayatPeriksa'])->name('riwayat-periksa');
+
+    Route::get('/profil', [ProfilController::class, 'getProfil'])->name('profil');
+    Route::put('/profil', [ProfilController::class, 'updateProfil'])->name('profil.update');
   });
 });
 

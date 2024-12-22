@@ -58,11 +58,14 @@
             @include('layout.sidebar')
         </div>
         <div class="container py-5">
-            {{-- @include('layout.admin.poli.modalAdd') --}}
+            @include('layout.dokter.jadwalPeriksa.modalAdd')
             <div class="relative overflow-x-auto shadow-md rounded-lg border border-black mt-5">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Nama Dokter
+                            </th>
                             <th scope="col" class="px-6 py-3">
                                 Hari
                             </th>
@@ -71,6 +74,9 @@
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Selesai
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Status
                             </th>
                             <th scope="col" class="px-6 py-3 text-end">
                                 Action
@@ -83,22 +89,29 @@
                                 class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                 <th scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ $jadwalPeriksa->hari }}
+                                    {{ $jadwalPeriksa->dokter->nama }}
                                 </th>
+                                <td class="px-6 py-4">
+                                    {{ $jadwalPeriksa->hari }}
+                                </td>
                                 <td class="px-6 py-4">
                                     {{ $jadwalPeriksa->jam_mulai }}
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $jadwalPeriksa->jam_selesai }}
                                 </td>
+                                <td class="px-6 py-4">
+                                    {{ $jadwalPeriksa->status }}
+                                </td>
                                 <td class="px-6 py-4 flex gap-2 justify-end">
-                                    {{-- @include('layout.admin.poli.modalEdit')
-                                    <form action="{{ route('admin.poli.delete', $poli->id) }}" method="POST"
-                                        onsubmit="return confirm('Are you sure you want to delete this poli?');">
+                                    @include('layout.dokter.jadwalPeriksa.modalEdit')
+                                    <form action="{{ route('dokter.jadwal-periksa.delete', $jadwalPeriksa->id) }}"
+                                        method="POST"
+                                        onsubmit="return confirm('Are you sure you want to delete this jadwal periksa?');">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="">Delete</button>
-                                    </form> --}}
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach

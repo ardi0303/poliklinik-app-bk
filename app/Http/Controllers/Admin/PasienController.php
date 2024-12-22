@@ -15,7 +15,7 @@ class PasienController extends Controller
 
     $lastPasien = Pasien::latest();
     $newId = $lastPasien ? $lastPasien->count() + 1 : 1;
-    $no_rm = date('Y') . '-' . sprintf('%03d', $newId);
+    $no_rm = date('Ym') . '-' . sprintf('%03d', $newId);
 
     return view('admin.pasien', compact('pasiens', 'no_rm'));
   }

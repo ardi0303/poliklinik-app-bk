@@ -57,12 +57,12 @@
                             </div> --}}
                             <div class="flex flex-col gap-2">
                                 <label for="noktp" class="text-sm font-bold">No. KTP</label>
-                                <input type="text" name="no_ktp" id="noktp"
+                                <input type="number" name="no_ktp" id="noktp"
                                     class="p-2 border border-black rounded-md">
                             </div>
                             <div class="flex flex-col gap-2">
                                 <label for="nohp" class="text-sm font-bold">No. HP</label>
-                                <input type="text" name="no_hp" id="nohp"
+                                <input type="number" name="no_hp" id="nohp"
                                     class="p-2 border border-black rounded-md">
                             </div>
                         </div>

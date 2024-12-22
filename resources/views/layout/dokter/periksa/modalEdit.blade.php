@@ -60,14 +60,15 @@
                                 class="p-2 border border-black rounded-md" value="{{ $daftarPoli->periksa->catatan }}">
                         </div>
                         <div class="flex flex-col gap-2">
-                            <label for="nama_obat" class="text-sm font-bold">Nama Obat</label>
+                            <label for="obat" class="text-sm font-bold">Obat</label>
                             <select class="p-2 border border-black rounded-md" id="resep-{{ $daftarPoli->id }}"
                                 name="obat[]" multiple="multiple">
                                 @if ($daftarPoli->periksa)
                                     @foreach ($daftarPoli->periksa->detailPeriksa as $detail)
                                         <option value="{{ $detail->obat->id }}" data-harga="{{ $detail->obat->harga }}"
                                             selected>
-                                            {{ $detail->obat->nama_obat }}
+                                            {{ $detail->obat->nama_obat }} -
+                                            Rp{{ number_format($detail->obat->harga, 0, ',', '.') }}
                                         </option>
                                     @endforeach
                                 @endif
@@ -75,7 +76,7 @@
                                     {{-- Cek apakah obat ini sudah dipilih sebelumnya --}}
                                     @if (!optional($daftarPoli->periksa)->detailPeriksa->contains('id_obat', $obat->id))
                                         <option value="{{ $obat->id }}" data-harga="{{ $obat->harga }}">
-                                            {{ $obat->nama_obat }}
+                                            {{ $obat->nama_obat }} - Rp{{ number_format($obat->harga, 0, ',', '.') }}
                                         </option>
                                     @endif
                                 @endforeach

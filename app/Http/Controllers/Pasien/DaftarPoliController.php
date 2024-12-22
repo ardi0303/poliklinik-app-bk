@@ -27,6 +27,7 @@ class DaftarPoliController extends Controller
   public function getJadwalByPoli($id_poli)
   {
     $jadwalPeriksas = JadwalPeriksa::with('dokter')
+      ->where('status', 'Aktif')
       ->whereHas('dokter', function ($query) use ($id_poli) {
         $query->where('id_poli', $id_poli);
       })->get();
