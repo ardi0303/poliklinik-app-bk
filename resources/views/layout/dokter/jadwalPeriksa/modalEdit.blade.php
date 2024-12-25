@@ -52,17 +52,20 @@
                         <div class="flex flex-col gap-2">
                             <label for="hari" class="text-sm font-bold">Hari</label>
                             <input type="text" name="hari" id="hari"
-                                class="p-2 border border-black rounded-md" value="{{ $jadwalPeriksa->hari }}">
+                                class="p-2 border border-black rounded-md bg-gray-200"
+                                value="{{ $jadwalPeriksa->hari }}" readonly>
                         </div>
                         <div class="flex flex-col gap-2">
                             <label for="jam_mulai" class="text-sm font-bold">Jam Mulai</label>
                             <input type="time" name="jam_mulai" id="jam_mulai"
-                                class="p-2 border border-black rounded-md" value="{{ $jadwalPeriksa->jam_mulai }}">
+                                class="p-2 border border-black rounded-md bg-gray-200"
+                                value="{{ $jadwalPeriksa->jam_mulai }}" readonly>
                         </div>
                         <div class="flex flex-col gap-2">
                             <label for="jam_selesai" class="text-sm font-bold">Jam Selesai</label>
                             <input type="time" name="jam_selesai" id="jam_selesai"
-                                class="p-2 border border-black rounded-md" value="{{ $jadwalPeriksa->jam_selesai }}">
+                                class="p-2 border border-black rounded-md bg-gray-200"
+                                value="{{ $jadwalPeriksa->jam_selesai }}" readonly>
                         </div>
                         {{-- status --}}
                         <div class="flex flex-col gap-2">

@@ -26,11 +26,12 @@ class AuthController extends Controller
       'nama' => 'required|string',
       'alamat' => 'required|string',
     ]);
+
     $credentials = $request->only('nama', 'alamat');
 
     if ($this->authenticateAdmin($credentials['nama'], $credentials['alamat'])) {
       session(['isAdmin' => true]);
-      return redirect()->route('admin.dashboard');
+      return redirect()->route('admin.dashboard')->with('success', 'Admin logged in successfully.');
     }
 
     $pasien = Pasien::where('nama', $request->nama)
@@ -38,7 +39,7 @@ class AuthController extends Controller
       ->first();
     if ($pasien) {
       auth()->guard('pasien')->login($pasien);
-      return redirect()->route('pasien.dashboard');
+      return redirect()->route('pasien.dashboard')->with('success', 'Patient logged in successfully.');
     }
 
     $dokter = Dokter::where('nama', $request->nama)
@@ -46,9 +47,10 @@ class AuthController extends Controller
       ->first();
     if ($dokter) {
       auth()->guard('dokter')->login($dokter);
-      return redirect()->route('dokter.dashboard');
+      return redirect()->route('dokter.dashboard')->with('success', 'Doctor logged in successfully.');
     }
-    return back()->withErrors(['login' => 'Invalid credentials.']);
+
+    return back()->with('error', 'User not found.');
   }
 
   public function handleRegisterPasien(Request $request)

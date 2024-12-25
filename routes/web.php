@@ -74,7 +74,8 @@ Route::group(['prefix' => 'dokter', 'as' => 'dokter.'], function () {
     Route::post('/periksa', [PeriksaController::class, 'addPeriksa'])->name('periksa.store');
     Route::put('/periksa/{id}', [PeriksaController::class, 'updatePeriksa'])->name('periksa.update');
 
-    Route::get('/riwayat-periksa', [DetailPeriksaController::class, 'getRiwayatPeriksa'])->name('riwayat-periksa');
+    Route::get('/riwayat-periksa', [DetailPeriksaController::class, 'getPasien'])->name('riwayat-periksa');
+    Route::get('/riwayat-periksa/{id_pasien}', [DetailPeriksaController::class, 'getRiwayatPeriksa'])->name('riwayat-periksa.detail');
 
     Route::get('/profil', [ProfilController::class, 'getProfil'])->name('profil');
     Route::put('/profil', [ProfilController::class, 'updateProfil'])->name('profil.update');
@@ -83,11 +84,9 @@ Route::group(['prefix' => 'dokter', 'as' => 'dokter.'], function () {
 
 Route::group(['prefix' => 'pasien', 'as' => 'pasien.'], function () {
   Route::group(['middleware' => 'auth:pasien'], function () {
-    Route::get('/dashboard', function () {
-      return view('pasien.dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [PasienController::class, 'dashboard'])->name('dashboard');
     Route::get('daftar-poli', [DaftarPoliController::class, 'getDaftarPoli'])->name('daftar-poli');
-    Route::get('jadwal-periksa/{id_poli}', [DaftarPoliController::class, 'getJadwalByPoli']);
+    Route::get('jadwal-periksa/{id_poli}', [DaftarPoliController::class, 'getJadwalByPoli'])->name('jadwal-periksa');
     Route::post('daftar-poli', [DaftarPoliController::class, 'addDaftarPoli'])->name('daftar-poli.store');
   });
 });

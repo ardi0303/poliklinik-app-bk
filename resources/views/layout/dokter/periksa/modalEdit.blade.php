@@ -100,7 +100,7 @@
             </div>
         </div>
     </div>
-    <script>
+    <script type="module">
         $(document).ready(function() {
             // Inisialisasi Select2 untuk setiap resep berdasarkan ID
             $('[id^="resep-"]').each(function() {

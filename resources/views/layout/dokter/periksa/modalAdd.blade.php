@@ -90,7 +90,7 @@
             </div>
         </div>
     </div>
-    <script>
+    <script type="module">
         $(document).ready(function() {
             $('#obat').select2();
 

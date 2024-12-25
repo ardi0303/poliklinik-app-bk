@@ -60,7 +60,7 @@
                         </div>
                         <div class="flex flex-col gap-2">
                             <label for="poli" class="text-sm font-bold">Poli</label>
-                            <select name="id_poli" id="id_poli" class="p-2 border border-black rounded-md">
+                            <select name="id_poli" id="id_poli" class="p-2 border border-black rounded-md" disabled>
                                 @foreach ($polis as $poli)
                                     <option value="{{ $poli->id }}"
                                         {{ $poli->id == $dokter->id_poli ? 'selected' : '' }}>

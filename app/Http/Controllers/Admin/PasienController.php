@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\DaftarPoli;
 use App\Models\Pasien;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -13,8 +14,8 @@ class PasienController extends Controller
   {
     $pasiens = Pasien::all();
 
-    $lastPasien = Pasien::latest();
-    $newId = $lastPasien ? $lastPasien->count() + 1 : 1;
+    $lastPasien = Pasien::latest()->first();
+    $newId = $lastPasien ? $lastPasien->id + 1 : 1;
     $no_rm = date('Ym') . '-' . sprintf('%03d', $newId);
 
     return view('admin.pasien', compact('pasiens', 'no_rm'));
@@ -77,5 +78,12 @@ class PasienController extends Controller
       Log::error($th);
       return back()->with('error', 'Failed to delete pasien.');
     }
+  }
+
+  public function dashboard()
+  {
+    $daftarPolis = DaftarPoli::all()->count();
+
+    return view('pasien.dashboard', compact('daftarPolis'));
   }
 }

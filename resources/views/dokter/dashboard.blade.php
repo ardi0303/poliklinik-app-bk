@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Document</title>
+    <script src="{{ asset('js/sweetalert2.js') }}"></script>
+    <title>Dokter | Dashboard</title>
 </head>
 
 <body>
@@ -44,26 +44,19 @@
         <div>
             @include('layout.sidebar')
         </div>
-        <div class="container py-5 grid grid-cols-4 gap-2">
-            {{-- buatkan div 4 buah untuk menampilkan jumlah dari $dokters, $pasiens, $polis, dan $obats
-            <a href="{{ route('admin.dokter') }}" class="bg-blue-500 text-white p-5 rounded-lg">
-                <h1 class="text-2xl font-bold">Dokter</h1>
-                <p class="text-4xl font-bold">{{ $dokters }}</p>
+        <div class="container py-5 grid grid-cols-3 gap-2">
+            <a href="{{ route('dokter.jadwal-periksa') }}" class="bg-blue-500 text-white p-5 rounded-lg">
+                <h1 class="text-2xl font-bold">Jadwal Periksa</h1>
+                <p class="text-4xl font-bold">{{ $jadwalPeriksas }}</p>
             </a>
-            <a href="{{ route('admin.pasien') }}" class="bg-green-500 text-white p-5 rounded-lg">
-                <h1 class="text-2xl font-bold">Pasien</h1>
-                <p class="text-4xl font-bold">{{ $pasiens }}</p>
+            <a href="{{ route('dokter.periksa') }}" class="bg-green-500 text-white p-5 rounded-lg">
+                <h1 class="text-2xl font-bold">Memeriksa Pasien</h1>
+                <p class="text-4xl font-bold">{{ $daftarPolis }}</p>
             </a>
-            <a href="{{ route('admin.poli') }}" class="bg-yellow-500 text-white p-5 rounded-lg">
-                <h1 class="text-2xl font-bold">Poli</h1>
-                <p class="text-4xl font-bold">{{ $polis }}</p>
+            <a href="{{ route('dokter.riwayat-periksa') }}" class="bg-red-500 text-white p-5 rounded-lg">
+                <h1 class="text-2xl font-bold">Riwayat Periksa</h1>
+                <p class="text-4xl font-bold">{{ $periksas }}</p>
             </a>
-            <a href="{{ route('admin.obat') }}" class="bg-red-500 text-white p-5 rounded-lg">
-                <h1 class="text-2xl font-bold">Obat</h1>
-                <p class="text-4xl font-bold">{{ $obats }}</p>
-            </a> --}}
-
-            Dashboard Dokter
         </div>
     </div>
 </body>

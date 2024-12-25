@@ -9,6 +9,33 @@
 </head>
 
 <body class="font-jakarta-sans">
+    @if (session('success'))
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    title: "{{ session('success') }}",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            });
+        </script>
+    @elseif(session('error'))
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'error',
+                    title: "{{ session('error') }}",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            });
+        </script>
+    @endif
     <div class="grid grid-cols-2 h-screen"
         style="background-image: url('{{ asset('assets/auth_bg.jpg') }}'); background-size: cover; background-position: center;">
         <div class="min-w-[700px] bg-gray-100 py-20 px-[120px] rounded-r-3xl">
@@ -24,12 +51,12 @@
                         @csrf
                         <div class="flex flex-col gap-6">
                             <div class="flex flex-col gap-2">
-                                <label for="nama" class="text-sm font-bold">Nama Lengkap</label>
+                                <label for="nama" class="text-sm font-bold">Username</label>
                                 <input type="text" name="nama" id="nama"
                                     class="p-2 border border-black rounded-md">
                             </div>
                             <div class="flex flex-col gap-2">
-                                <label for="alamat" class="text-sm font-bold">Alamat</label>
+                                <label for="alamat" class="text-sm font-bold">Password</label>
                                 <input type="text" name="alamat" id="alamat"
                                     class="p-2 border border-black rounded-md">
                             </div>
@@ -58,6 +85,7 @@
                             </div> --}}
                         </div>
                         <div class="flex flex-col gap-2">
+                            <a href="{{ route('register') }}" class="text-right">Belum memiliki akun? Daftar</a>
                             <button type="submit" class="p-2 bg-gray-500 text-white rounded-md">Login</button>
                         </div>
                     </form>

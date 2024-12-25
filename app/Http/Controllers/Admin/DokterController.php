@@ -3,17 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\DaftarPoli;
 use App\Models\Dokter;
+use App\Models\JadwalPeriksa;
+use App\Models\Periksa;
 use App\Models\Poli;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class DokterController extends Controller
 {
-  public function dashboard()
-  {
-    return view('dokter.dashboard');
-  }
   public function getDokter()
   {
     $dokters = Dokter::with('poli')->get();
@@ -66,5 +65,13 @@ class DokterController extends Controller
       Log::error($th);
       return back()->with('error', 'Failed to delete dokter.');
     }
+  }
+
+  public function dashboard()
+  {
+    $jadwalPeriksas = JadwalPeriksa::all()->count();
+    $daftarPolis = DaftarPoli::all()->count();
+    $periksas = Periksa::all()->count();
+    return view('dokter.dashboard', compact('jadwalPeriksas', 'daftarPolis', 'periksas'));
   }
 }

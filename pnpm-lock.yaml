@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      select2:
+        specifier: 4.1.0-rc.0
+        version: 4.1.0-rc.0
     devDependencies:
       autoprefixer:
         specifier: ^10.4.20
@@ -737,6 +741,9 @@ packages:
   run-parallel@1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
 
+  select2@4.1.0-rc.0:
+    resolution: {integrity: sha512-Hr9TdhyHCZUtwznEH2CBf7967mEM0idtJ5nMtjvk3Up5tPukOLXbHUNmh10oRfeNIhj+3GD3niu+g6sVK+gK0A==}
+
   shebang-command@2.0.0:
     resolution: {integrity: sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA==}
     engines: {node: '>=8'}
@@ -1450,6 +1457,8 @@ snapshots:
   run-parallel@1.2.0:
     dependencies:
       queue-microtask: 1.2.3
+
+  select2@4.1.0-rc.0: {}
 
   shebang-command@2.0.0:
     dependencies:

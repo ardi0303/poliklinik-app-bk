@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('js/sweetalert2.js') }}"></script>
     <title>Admin | Dashboard</title>
 </head>
 
@@ -21,20 +21,6 @@
                         position: 'top-end',
                         icon: 'success',
                         title: "{{ session('success') }}",
-                        showConfirmButton: false,
-                        timer: 3000
-                    });
-                });
-            </script>
-        @elseif(session('error'))
-            <script>
-                document.addEventListener("DOMContentLoaded", function() {
-
-                    Swal.fire({
-                        toast: true,
-                        position: 'top-end',
-                        icon: 'error',
-                        title: "{{ session('error') }}",
                         showConfirmButton: false,
                         timer: 3000
                     });
