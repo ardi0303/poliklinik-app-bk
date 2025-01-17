@@ -43,6 +43,13 @@ class JadwalPeriksaController extends Controller
       }
     }
 
+    // $existingJadwal = JadwalPeriksa::where('id_dokter', $id_dokter)
+    //   ->where('hari', $request->hari)
+    //   ->first();
+    // if ($existingJadwal) {
+    //   return back()->with('error', 'Jadwal periksa untuk hari ' . $request->hari . ' sudah ada.');
+    // }
+
     try {
       if ($request->status === 'Aktif') {
         JadwalPeriksa::where('id_dokter', $id_dokter)
