@@ -34,6 +34,14 @@ class JadwalPeriksaController extends Controller
     ]);
 
     $id_dokter = Auth::guard('dokter')->id();
+    $jadwalPeriksa = JadwalPeriksa::with('dokter')
+      ->where('id_dokter', $id_dokter)
+      ->get();
+    foreach ($jadwalPeriksa as $jadwal) {
+      if ($jadwal->hari === $request->hari) {
+        return back()->with('error', 'Jadwal periksa untuk hari ' . $request->hari . ' sudah ada.');
+      }
+    }
 
     try {
       if ($request->status === 'Aktif') {
